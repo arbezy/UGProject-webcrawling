@@ -18,9 +18,7 @@ print(f'Visit {i} to {url}')
 with webdriver.Remote("http://localhost:4444", options=webdriver.ChromeOptions()) as driver:
     sleep(2)
     site = url.split('//')[1].split('.')[0]
-    # check this path is correct, as not finding results
     fname = f'/usr/src/app/results/{i}_{site}.pcap'
-    # I think this filter could be wrong!
     with Sniffer(path=fname, filter=DEFAULT_FILTER):
         driver.get(url)
         sleep(5)
