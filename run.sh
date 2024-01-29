@@ -1,17 +1,20 @@
 #!/bin/bash
 
-VISITS=100
+VISITS=10
 
 rm -rf results
 mkdir -p results
+rm -rf screenshots
+mkdir screenshots
 
-echo "testing 123"
+echo "removed previous results"
 
-for i in {0..99}; do
-	while read url; do
+
+while read url; do
+	for i in {0..9}; do
         python3 main.py $i https://$url
 		# I think these kill lines are unecessary? as dumpcap killed elsewhere at least
 		killall -9 dumpcap
 		killall -9 python3
-    done <urls.txt
-done
+    done 
+done <urls.txt

@@ -9,6 +9,10 @@ USE_TSHARK_TCP_PAYLOAD = False
 SKIP_MALFORMED = True
 
 
+# THIS CODE IS DESIGNED FOR TCP, WILL NOT WORK ON UDP... 
+# Therefore is not suitable for quic / http3
+
+
 class PacketInfo(object):
     def __init__(self):
         self.ts = 0.0

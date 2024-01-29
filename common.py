@@ -56,7 +56,9 @@ LOCALIZED_DATASET = join(ETC_DIR, "localized-urls-100-top.csv")
 VBOX_GATEWAY_IP = "10.0.2.2"  # default gateway IP of VirtualBox
 LXC_GATEWAY_IP = "10.0.3.1"  # default gateway IP of LXC
 LOCALHOST_IP = "127.0.0.1"  # default localhost IP
-DEFAULT_FILTER = 'tcp and not host %s and not tcp port 22 and not tcp port 20' % LOCALHOST_IP
+# default filter will not work capturing local traffic
+DEFAULT_TCP_FILTER = 'tcp and not host %s and not tcp port 22 and not tcp port 20' % LOCALHOST_IP
+DEFAULT_UDP_FILTER = 'udp and not host %s and not udp port 22 and not udp port 20' % LOCALHOST_IP
 
 
 class TimeoutException(Exception):

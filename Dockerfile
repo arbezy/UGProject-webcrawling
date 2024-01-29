@@ -1,4 +1,4 @@
-FROM selenium/standalone-chrome:latest
+FROM selenium/standalone-chrome:latest AS base
 
 WORKDIR /usr/src/app
 
@@ -24,7 +24,11 @@ RUN apt -y install wireshark
 # tshark to parse pcap files
 RUN apt-get -y install tshark
 
+# to solve issues with webcrawling within docker
+#RUN sudo mount -t tmpfs -o rw,nosuid,nodev,noexec,relatime,size=512M tmpfs /dev/shm
+
 # pip
+#RUN apt -y install wget
 RUN wget https://bootstrap.pypa.io/get-pip.py
 RUN python3 get-pip.py
 
@@ -34,6 +38,7 @@ RUN python3 -m pip install selenium
 RUN python3 -m pip install psutil
 RUN python3 -m pip install scapy
 RUN python3 -m pip install pyvirtualdisplay
+RUN python3 -m pip install typing-extensions
 
 USER root
 
